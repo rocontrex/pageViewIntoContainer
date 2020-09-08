@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol ConteinerToSuper {
+    func changeButtonByID(_ id: Int)
+}
+
 class ConquestPageViewController: UIPageViewController {
+    
+    var conquestViewController: ConteinerToSuper!
 
     private(set) lazy var conquestsViewsControllers: [UIViewController] = {
         return [self.addNewViewController("Postals"),
@@ -47,14 +53,14 @@ extension ConquestPageViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let index = conquestsViewsControllers.firstIndex(of: viewController), index > 0 else { return nil }
         let before = index - 1
-        
+        conquestViewController.changeButtonByID(before)
         return conquestsViewsControllers[before]
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let index = conquestsViewsControllers.firstIndex(of: viewController), index < (conquestsViewsControllers.count - 1) else { return nil }
         let after = index + 1
-        //delegate?.updateView(id: after)
+        conquestViewController.changeButtonByID(after)
         return conquestsViewsControllers[after]
     }
     
@@ -66,6 +72,7 @@ extension ConquestPageViewController: UIPageViewControllerDataSource {
         guard let viewControllerBeingDisplayed = viewControllers?.first else {
             return 0
         }
+        
         let index = conquestsViewsControllers.firstIndex(of: viewControllerBeingDisplayed)
         
         return index ?? 0

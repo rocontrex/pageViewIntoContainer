@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConquestViewController: UIViewController {
+class ConquestViewController: UIViewController, ConteinerToSuper {
 
     @IBOutlet weak var postalOutlet: UIButton!
     @IBOutlet weak var souvenirOutlet: UIButton!
@@ -59,9 +59,20 @@ class ConquestViewController: UIViewController {
         button.layer.borderColor = #colorLiteral(red: 0.3111339808, green: 0.1553293169, blue: 0.7954767346, alpha: 1)
     }
     
+    func changeButtonByID(_ id: Int) {
+        var button: UIButton = allButtons[0]
+        for btn in allButtons{
+            if btn.tag == id {
+                button = btn
+            }
+        }
+        setSelectedButton(button)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "containerSegue" {
             conquestPageViewController = segue.destination as? ConquestPageViewController
+            conquestPageViewController.conquestViewController = self
         }
     }
 }
