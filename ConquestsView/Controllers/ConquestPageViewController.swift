@@ -8,13 +8,8 @@
 
 import UIKit
 
-protocol ContainerToSuper: AnyObject {
-    func updateView(id: Int)
-}
+class ConquestPageViewController: UIPageViewController {
 
-class ConquestPageViewController: UIPageViewController, SuperToContainer {
-
-    
     private(set) lazy var conquestsViewsControllers: [UIViewController] = {
         return [self.addNewViewController("Postals"),
                 self.addNewViewController("Souvenirs"),
@@ -22,9 +17,10 @@ class ConquestPageViewController: UIPageViewController, SuperToContainer {
     }()
     
     private func addNewViewController(_ name: String) -> UIViewController {
-        
-        return UIStoryboard(name: "Main", bundle: nil) .
-            instantiateViewController(withIdentifier: "\(name)ViewController")
+        let viewController = UIStoryboard(name: "Main", bundle: nil) .
+        instantiateViewController(withIdentifier: "\(name)ViewController")
+        viewController.title = name
+        return viewController
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -51,7 +47,7 @@ extension ConquestPageViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let index = conquestsViewsControllers.firstIndex(of: viewController), index > 0 else { return nil }
         let before = index - 1
-        //delegate?.updateView(id: before)
+        
         return conquestsViewsControllers[before]
     }
     
@@ -67,11 +63,11 @@ extension ConquestPageViewController: UIPageViewControllerDataSource {
     }
     
     func presentationIndex(for _: UIPageViewController) -> Int {
-        guard let firstViewController = viewControllers?.first,
-            let firstViewControllerIndex = conquestsViewsControllers.firstIndex(of: firstViewController) else {
-                return 0
+        guard let viewControllerBeingDisplayed = viewControllers?.first else {
+            return 0
         }
+        let index = conquestsViewsControllers.firstIndex(of: viewControllerBeingDisplayed)
         
-        return firstViewControllerIndex
+        return index ?? 0
     }
 }

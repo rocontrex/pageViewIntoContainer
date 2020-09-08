@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H39-MK-aAT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H39-MK-aAT">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,7 +18,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pra-8g-gDt">
                                 <rect key="frame" x="0.0" y="161" width="414" height="735"/>
                                 <connections>
-                                    <segue destination="dk3-un-IWb" kind="embed" id="CYE-6Y-Hvc"/>
+                                    <segue destination="dk3-un-IWb" kind="embed" identifier="containerSegue" id="CYE-6Y-Hvc"/>
                                 </connections>
                             </containerView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="sRj-hj-IQ1">
@@ -43,7 +43,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="postalAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Aab-Zd-97z"/>
+                                            <action selector="didTouchSegmentButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jyr-8f-UvW"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Go7-2K-hMd">
@@ -65,7 +65,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="souvenirAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ieF-U6-wLT"/>
+                                            <action selector="didTouchSegmentButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BRT-zc-4R1"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iSw-E4-RVm">
@@ -87,7 +87,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="badgeAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aEO-q2-mB7"/>
+                                            <action selector="didTouchSegmentButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ylk-wm-7ca"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -109,6 +109,9 @@
                         <outlet property="badgeOutlet" destination="iSw-E4-RVm" id="bdq-iz-lcP"/>
                         <outlet property="postalOutlet" destination="Ucq-2f-Isu" id="uLd-0d-6cI"/>
                         <outlet property="souvenirOutlet" destination="Go7-2K-hMd" id="Mrj-6w-jSW"/>
+                        <outletCollection property="allButtons" destination="Ucq-2f-Isu" collectionClass="NSMutableArray" id="Fg7-Po-ALB"/>
+                        <outletCollection property="allButtons" destination="Go7-2K-hMd" collectionClass="NSMutableArray" id="CSf-UH-8rQ"/>
+                        <outletCollection property="allButtons" destination="iSw-E4-RVm" collectionClass="NSMutableArray" id="ct1-5x-req"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
